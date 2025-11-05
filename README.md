@@ -12,7 +12,7 @@ Visual, interactive style guide meant for human consumption. View this on GitHub
 - Shadow and elevation examples
 - Logo usage guidelines
 
-**View live:** [https://yourusername.github.io/offline-styleguide](https://yourusername.github.io/offline-styleguide)
+**View live:** [https://offlinemediainc.github.io/offline-style-guide/](https://offlinemediainc.github.io/offline-style-guide/)
 
 ### **ai-style-guide.md**
 Comprehensive markdown guide optimized for AI consumption. Feed this to AI tools (like Claude, ChatGPT, etc.) when:

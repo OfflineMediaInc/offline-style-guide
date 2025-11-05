@@ -8,13 +8,12 @@ This style guide is the source of truth for all design and styling decisions acr
 2. [Typography System](#typography-system)
 3. [Color System](#color-system)
 4. [Layout & Responsive Patterns](#layout--responsive-patterns)
-5. [Logo Usage Guidelines](#logo-usage-guidelines)
-6. [Component Patterns](#component-patterns)
-7. [Premium Styling](#premium-styling)
-8. [Shadows & Elevation](#shadows--elevation)
-9. [Animations & Performance](#animations--performance)
-10. [Best Practices](#best-practices)
-11. [Quick Reference](#quick-reference)
+5. [Component Patterns](#component-patterns)
+6. [Premium Styling](#premium-styling)
+7. [Shadows & Elevation](#shadows--elevation)
+8. [Animations & Performance](#animations--performance)
+9. [Best Practices](#best-practices)
+10. [Quick Reference](#quick-reference)
 
 ---
 
@@ -463,47 +462,6 @@ Use Tailwind's spacing scale consistently:
 <div className="aspect-square overflow-hidden rounded-lg">
   <img className="w-full h-full object-cover object-center" src={image} />
 </div>
-```
-
----
-
-## Logo Usage Guidelines
-
-Consistent logo sizing and placement is critical across all Offline properties.
-
-### Logo Specifications
-
-#### Header Logo (WebHeader)
-- **Size**: 98px × 25px
-- **Position**: Top-left
-- **Background**: Black (`bg-black`)
-- **Padding**: `p-3` (12px around entire header)
-- **Class**: `.!relative .!w-[98px] .!h-[25px]`
-
-#### Footer Logo
-- **Size**: 172px × 42px
-- **Position**: Top of footer, left-aligned (centered on mobile)
-- **Background**: Black
-- **Class**: `.w-[172px] .h-[42px]`
-
-### Placement Guidelines
-
-1. **Always place logo in top-left** of the header
-2. **Maintain black background** for header/footer
-3. **Never resize arbitrarily** - use specified dimensions
-4. **Consistent across subdomains** - all properties should match these specs
-5. **Adequate breathing room** - minimum 12px padding around logo
-
-### Logo Component Usage
-
-```jsx
-import { OfflineLogo } from './assets/OfflineLogo';
-
-// Header usage
-<OfflineLogo className="!relative !w-[98px] !h-[25px]" />
-
-// Footer usage
-<OfflineLogo className="w-[172px] h-[42px]" />
 ```
 
 ---
