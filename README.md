@@ -29,6 +29,8 @@ This file contains:
 - Best practices and do's/don'ts
 - Animation and performance guidelines
 
+**AI Reference:** [https://raw.githubusercontent.com/OfflineMediaInc/offline-style-guide/main/ai-style-guide.md](https://raw.githubusercontent.com/OfflineMediaInc/offline-style-guide/main/ai-style-guide.md)
+
 ### **offline_styles.css**
 Ready-to-use CSS file containing:
 - All CSS custom properties (color variables, typography variables, shadows)
