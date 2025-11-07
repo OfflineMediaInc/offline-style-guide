@@ -656,6 +656,178 @@
             </div>
         </section>
 
+        <!-- Layout & Responsive Patterns -->
+        <section id="layout">
+            <h2>Layout & Responsive Patterns</h2>
+            <p class="body-large">Consistent layout patterns for content centering and responsive design.</p>
+
+            <h3>Container Structure</h3>
+            <p class="body-medium">All public-facing pages use a consistent container pattern with max-width 1280px.</p>
+            <div style="margin-top: 24px; padding: 24px; background: var(--colors-gray-25); border-radius: 8px; border: 2px dashed var(--colors-gray-300);">
+                <div style="max-width: 1280px; margin: 0 auto; width: 100%; min-height: 120px; background: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; padding: 24px; box-shadow: var(--card-shadow);">
+                    <div class="body-medium" style="text-align: center;">
+                        <strong>max-w-7xl mx-auto w-full</strong><br>
+                        <span style="color: var(--colors-gray-500);">Content centered at 1280px max width</span>
+                    </div>
+                </div>
+            </div>
+            <div class="code-block">&lt;div class="flex relative flex-col md:flex-row max-w-7xl mx-auto w-full min-h-screen"&gt;
+  {/* Content */}
+&lt;/div&gt;</div>
+
+            <h3>Two-Column Layout Pattern</h3>
+            <p class="body-medium">Primary layout pattern for OfferShare and EventShare pages.</p>
+            <div style="margin-top: 24px; padding: 24px; background: var(--colors-gray-25); border-radius: 8px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 24px; max-width: 1280px; margin: 0 auto;">
+                    <div style="flex: 1; min-width: 300px; padding: 24px; background: var(--colors-blue-50); border-radius: 8px; border: 2px solid var(--colors-blue-400);">
+                        <div class="title-medium" style="margin-bottom: 12px;">Left Column (w-full md:w-1/2)</div>
+                        <div class="body-small" style="color: var(--colors-gray-700);">
+                            <strong>Sticky on desktop</strong><br>
+                            Images, media content<br>
+                            md:pr-12 (right padding)
+                        </div>
+                    </div>
+                    <div style="flex: 1; min-width: 300px; padding: 24px; background: var(--colors-yellow-50); border-radius: 8px; border: 2px solid var(--colors-yellow-400);">
+                        <div class="title-medium" style="margin-bottom: 12px;">Right Column (w-full md:w-1/2)</div>
+                        <div class="body-small" style="color: var(--colors-gray-700);">
+                            <strong>Scrollable content</strong><br>
+                            Text, details, descriptions<br>
+                            md:pl-12 (left padding)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="code-block">&lt;div class="flex relative flex-col md:flex-row max-w-7xl mx-auto w-full"&gt;
+  &lt;!-- Left Column - Images --&gt;
+  &lt;div class="w-full md:w-1/2 md:pr-12"&gt;
+    &lt;div class="md:pt-9 md:sticky md:top-0"&gt;...&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;!-- Right Column - Content --&gt;
+  &lt;div class="w-full md:w-1/2 px-4 md:pl-12"&gt;
+    &lt;div class="pt-4 md:pt-9"&gt;...&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+
+            <h3>Spacing System</h3>
+            <p class="body-medium">Consistent Tailwind spacing scale.</p>
+            <div style="margin-top: 24px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+                    <div style="padding: 16px; background: var(--colors-gray-25); border-radius: 8px; border-left: 4px solid var(--colors-yellow-400);">
+                        <div class="label-large" style="margin-bottom: 8px;">gap-2, gap-3, gap-4</div>
+                        <div class="body-small" style="color: var(--colors-gray-600);">8px, 12px, 16px</div>
+                        <div class="body-x-small" style="color: var(--colors-gray-500); margin-top: 4px;">Small gaps</div>
+                    </div>
+                    <div style="padding: 16px; background: var(--colors-gray-25); border-radius: 8px; border-left: 4px solid var(--colors-blue-400);">
+                        <div class="label-large" style="margin-bottom: 8px;">gap-6, gap-8</div>
+                        <div class="body-small" style="color: var(--colors-gray-600);">24px, 32px</div>
+                        <div class="body-x-small" style="color: var(--colors-gray-500); margin-top: 4px;">Medium gaps</div>
+                    </div>
+                    <div style="padding: 16px; background: var(--colors-gray-25); border-radius: 8px; border-left: 4px solid var(--colors-teal-500);">
+                        <div class="label-large" style="margin-bottom: 8px;">gap-12, gap-16</div>
+                        <div class="body-small" style="color: var(--colors-gray-600);">48px, 64px</div>
+                        <div class="body-x-small" style="color: var(--colors-gray-500); margin-top: 4px;">Large gaps</div>
+                    </div>
+                    <div style="padding: 16px; background: var(--colors-gray-25); border-radius: 8px; border-left: 4px solid var(--colors-gray-600);">
+                        <div class="label-large" style="margin-bottom: 8px;">py-4, py-6, py-8</div>
+                        <div class="body-small" style="color: var(--colors-gray-600);">16px, 24px, 32px</div>
+                        <div class="body-x-small" style="color: var(--colors-gray-500); margin-top: 4px;">Section padding</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Component Patterns -->
+        <section id="components">
+            <h2>Component Patterns</h2>
+            <p class="body-large">Reusable UI components with consistent styling and behavior.</p>
+
+            <h3>Buttons</h3>
+            <p class="body-medium">Three color variants for different contexts and emphasis levels.</p>
+
+            <div style="margin-top: 24px; display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start;">
+                <div style="flex: 1; min-width: 250px; padding: 24px; background: var(--colors-gray-25); border-radius: 8px;">
+                    <div class="title-small" style="margin-bottom: 16px; color: var(--colors-gray-600);">Black Button (Primary)</div>
+                    <button style="padding: 12px 24px; height: 48px; background: var(--colors-gray-900); color: white; border: none; border-radius: 8px; font-family: 'Satoshi', sans-serif; font-weight: 700; font-size: 14px; cursor: pointer; transition: all 0.3s ease;">
+                        Download the app
+                    </button>
+                    <div class="body-x-small" style="margin-top: 12px; color: var(--colors-gray-500);">
+                        Hover: Gray-700<br>
+                        Active: Pure black
+                    </div>
+                </div>
+
+                <div style="flex: 1; min-width: 250px; padding: 24px; background: var(--colors-gray-900); border-radius: 8px;">
+                    <div class="title-small" style="margin-bottom: 16px; color: var(--colors-gray-300);">White Button (Secondary)</div>
+                    <button style="padding: 12px 24px; height: 48px; background: white; color: var(--colors-gray-900); border: none; border-radius: 8px; font-family: 'Satoshi', sans-serif; font-weight: 700; font-size: 14px; cursor: pointer; transition: all 0.3s ease;">
+                        Learn More
+                    </button>
+                    <div class="body-x-small" style="margin-top: 12px; color: var(--colors-gray-400);">
+                        Hover: Gray-25<br>
+                        Active: Gray-200
+                    </div>
+                </div>
+
+                <div style="flex: 1; min-width: 250px; padding: 24px; background: var(--colors-gray-25); border-radius: 8px;">
+                    <div class="title-small" style="margin-bottom: 16px; color: var(--colors-gray-600);">Gray Button (Tertiary)</div>
+                    <button style="padding: 12px 24px; height: 48px; background: var(--colors-gray-50); color: var(--colors-gray-700); border: none; border-radius: 8px; font-family: 'Satoshi', sans-serif; font-weight: 700; font-size: 14px; cursor: pointer; transition: all 0.3s ease;">
+                        Cancel
+                    </button>
+                    <div class="body-x-small" style="margin-top: 12px; color: var(--colors-gray-500);">
+                        Hover: Gray-100<br>
+                        Active: Gray-200
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-block" style="margin-top: 16px;">&lt;Button color="black"&gt;Download the app&lt;/Button&gt;
+&lt;Button color="white"&gt;Learn More&lt;/Button&gt;
+&lt;Button color="gray"&gt;Cancel&lt;/Button&gt;</div>
+
+            <h3>Form Inputs</h3>
+            <p class="body-medium">Standard input styling with multiple states.</p>
+
+            <div style="margin-top: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+                <div>
+                    <label class="body-small" style="display: block; margin-bottom: 8px; font-weight: 700; color: var(--colors-gray-700);">Default State</label>
+                    <input type="text" placeholder="Enter text" style="width: 100%; padding: 12px 16px; border: 1px solid var(--colors-gray-100); border-radius: 8px; font-family: 'Satoshi', sans-serif; font-size: 16px; transition: all 0.2s ease-in-out;">
+                    <div class="body-x-small" style="margin-top: 8px; color: var(--colors-gray-500);">
+                        Border: Gray-100
+                    </div>
+                </div>
+
+                <div>
+                    <label class="body-small" style="display: block; margin-bottom: 8px; font-weight: 700; color: var(--colors-gray-700);">Focus State</label>
+                    <input type="text" placeholder="Enter text" style="width: 100%; padding: 12px 16px; border: 2px solid var(--colors-gray-900); border-radius: 8px; font-family: 'Satoshi', sans-serif; font-size: 16px; box-shadow: 0 0 0 3px rgba(25, 25, 25, 0.1);">
+                    <div class="body-x-small" style="margin-top: 8px; color: var(--colors-gray-500);">
+                        Border: Gray-900 (2px)
+                    </div>
+                </div>
+
+                <div>
+                    <label class="body-small" style="display: block; margin-bottom: 8px; font-weight: 700; color: var(--colors-gray-700);">Error State</label>
+                    <input type="text" placeholder="Enter text" value="invalid@" style="width: 100%; padding: 12px 16px; border: 1px solid var(--colors-red-400); border-radius: 8px; font-family: 'Satoshi', sans-serif; font-size: 16px;">
+                    <div class="body-x-small" style="margin-top: 8px; color: var(--colors-red-400);">
+                        Border: Red-400
+                    </div>
+                </div>
+
+                <div>
+                    <label class="body-small" style="display: block; margin-bottom: 8px; font-weight: 700; color: var(--colors-gray-700);">Success State</label>
+                    <input type="text" placeholder="Enter text" value="user@example.com" style="width: 100%; padding: 12px 16px; border: 1px solid var(--semantic-success500); border-radius: 8px; font-family: 'Satoshi', sans-serif; font-size: 16px;">
+                    <div class="body-x-small" style="margin-top: 8px; color: var(--semantic-success500);">
+                        Border: Success-500
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-block" style="margin-top: 16px;">&lt;div class="input-wrapper"&gt;
+  &lt;label class="input-label"&gt;Label Text&lt;/label&gt;
+  &lt;div class="input-container"&gt;
+    &lt;input class="input-field" type="text" placeholder="Enter text" /&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</div>
+        </section>
+
         <!-- Premium Styling -->
         <section id="premium">
             <h2>Premium Styling</h2>
