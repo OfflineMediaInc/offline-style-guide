@@ -5,15 +5,17 @@ This style guide is the source of truth for all design and styling decisions acr
 ## Table of Contents
 
 1. [Overview & Purpose](#overview--purpose)
-2. [Typography System](#typography-system)
-3. [Color System](#color-system)
-4. [Layout & Responsive Patterns](#layout--responsive-patterns)
-5. [Component Patterns](#component-patterns)
-6. [Premium Styling](#premium-styling)
-7. [Shadows & Elevation](#shadows--elevation)
-8. [Animations & Performance](#animations--performance)
-9. [Best Practices](#best-practices)
-10. [Quick Reference](#quick-reference)
+2. [Logo & Brand Assets](#logo--brand-assets)
+3. [Typography System](#typography-system)
+4. [Color System](#color-system)
+5. [Page Structure](#page-structure)
+6. [Layout & Responsive Patterns](#layout--responsive-patterns)
+7. [Component Patterns](#component-patterns)
+8. [Premium Styling](#premium-styling)
+9. [Shadows & Elevation](#shadows--elevation)
+10. [Animations & Performance](#animations--performance)
+11. [Best Practices](#best-practices)
+12. [Quick Reference](#quick-reference)
 
 ---
 
@@ -33,6 +35,122 @@ This guide provides both high-level principles and specific implementation detai
 - Specific CSS variables and Tailwind classes
 - Code examples where applicable
 - Do's and Don'ts
+
+---
+
+## Logo & Brand Assets
+
+The Offline logo comes in two variations: **Icon** (the "O" mark) and **Wordmark** (full "offline" text). Each is available in black and white versions, in both PNG and SVG formats.
+
+### Logo Assets
+
+All logo assets are hosted on AWS S3 and available for direct use:
+
+#### Icon (The "O" Mark)
+
+| Version | PNG | SVG |
+|---------|-----|-----|
+| Black on White | `icon-black-on-white.png` | `icon-black-on-white.svg` |
+| White on Black | `icon-white-on-black.png` | `icon-white-on-black.svg` |
+
+**Icon URLs:**
+```
+https://premium-production.s3.us-east-1.amazonaws.com/public-assets/icon-styles/icon-black-on-white.png
+https://premium-production.s3.us-east-1.amazonaws.com/public-assets/icon-styles/icon-black-on-white.svg
+https://premium-production.s3.us-east-1.amazonaws.com/public-assets/icon-styles/icon-white-on-black.png
+https://premium-production.s3.us-east-1.amazonaws.com/public-assets/icon-styles/icon-white-on-black.svg
+```
+
+#### Wordmark (Full "offline" Text)
+
+| Version | PNG | SVG |
+|---------|-----|-----|
+| Black | `wordmark-black.png` | `wordmark-black.svg` |
+| White | `wordmark-white.png` | `wordmark-white.svg` |
+
+**Wordmark URLs:**
+```
+https://premium-production.s3.us-east-1.amazonaws.com/public-assets/icon-styles/wordmark-black.png
+https://premium-production.s3.us-east-1.amazonaws.com/public-assets/icon-styles/wordmark-black.svg
+https://premium-production.s3.us-east-1.amazonaws.com/public-assets/icon-styles/wordmark-white.png
+https://premium-production.s3.us-east-1.amazonaws.com/public-assets/icon-styles/wordmark-white.svg
+```
+
+### When to Use Each Version
+
+| Context | Logo Version | Color |
+|---------|--------------|-------|
+| Header on light background | Wordmark | Black |
+| Header on dark background | Wordmark | White |
+| Footer (dark background) | Wordmark | White |
+| App icon / favicon | Icon | Contextual |
+| Small spaces / mobile nav | Icon | Contextual |
+| Social media profile | Icon | Black or White |
+
+### Logo Placement Guidelines
+
+Based on usage across [letsgetoffline.com](https://www.letsgetoffline.com/) and [app.letsgetoffline.com](https://app.letsgetoffline.com/partner/foxcroft-food-wine-north-raleigh):
+
+#### Header Placement
+- **Position**: Top-left corner
+- **Size**: Approximately 98px × 25px for wordmark
+- **Background**: Typically on black header bar
+- **Logo Version**: White wordmark on dark backgrounds, black wordmark on light backgrounds
+- **Link**: Always links to homepage (`/`)
+
+```jsx
+<header className="bg-black">
+  <a href="/">
+    <img
+      src="https://premium-production.s3.us-east-1.amazonaws.com/public-assets/icon-styles/wordmark-white.svg"
+      alt="Offline"
+      style={{ width: '98px', height: '25px' }}
+    />
+  </a>
+</header>
+```
+
+#### Footer Placement
+- **Position**: Left column or centered
+- **Size**: Approximately 172px × 42px for wordmark (larger than header)
+- **Background**: Black footer background
+- **Logo Version**: White wordmark
+
+```jsx
+<footer className="bg-black">
+  <img
+    src="https://premium-production.s3.us-east-1.amazonaws.com/public-assets/icon-styles/wordmark-white.svg"
+    alt="Offline"
+    style={{ width: '172px', height: '42px' }}
+  />
+</footer>
+```
+
+### Logo Do's and Don'ts
+
+**Do's:**
+- Use SVG format when possible for crisp rendering at any size
+- Use PNG format when SVG isn't supported (email, some social platforms)
+- Match logo color to background (white logo on dark, black logo on light)
+- Maintain consistent sizing within the same context (all headers same size)
+- Preserve aspect ratio when scaling
+
+**Don'ts:**
+- Don't place black logo on dark backgrounds
+- Don't place white logo on light backgrounds
+- Don't stretch or distort the logo
+- Don't add effects (shadows, glows, outlines) to the logo
+- Don't use the icon where the wordmark would fit
+- Don't modify logo colors beyond black/white
+
+### File Format Guidance
+
+| Format | Use Case |
+|--------|----------|
+| **SVG** | Web, apps, any scalable context (preferred) |
+| **PNG** | Email signatures, social media, legacy systems |
+
+**Always prefer SVG** for web applications—it scales perfectly to any resolution and has smaller file sizes.
 
 ---
 
@@ -365,6 +483,115 @@ Used for success states and positive feedback.
 |------|-------------|-----|-------|
 | Black | `--black` | `#000000` | Pure black, used for backgrounds |
 | Gray 900 Alt | `--gray-900` | `#252525` | Alternative dark gray |
+
+---
+
+## Page Structure
+
+Offline uses different structural approaches depending on the page type. Understanding when to use each pattern ensures consistent, appropriate styling.
+
+### Page Types Overview
+
+| Page Type | Layout | Primary Use | Key Characteristics |
+|-----------|--------|-------------|---------------------|
+| **Landing Page** | Full-width hero sections | Marketing, city pages, home | Large imagery, bold headlines, full-bleed sections |
+| **Detail Page** | Two-column layout | Partner pages, offer pages, event pages | Information-dense, bordered sections, sticky sidebar |
+
+### Landing Pages
+
+Landing pages use dramatic, full-screen hero sections with large imagery and bold typography. These pages are designed to capture attention and drive conversions.
+
+**Characteristics**:
+- Full-width or near-full-width hero images
+- Large display typography (Cabinet Grotesk)
+- Minimal borders—content flows freely
+- Strategic use of shadows only on floating CTAs or key interactive elements
+- High visual impact, low information density per section
+
+### Detail Pages (Two-Column Layout)
+
+Detail pages display comprehensive information in a structured two-column format. The partner page (e.g., `/partner/foxcroft-food-wine-north-raleigh`) exemplifies this pattern.
+
+**Characteristics**:
+- Two-column layout: sticky image/media left, scrollable content right
+- Information organized into discrete sections
+- Borders used to create self-contained content blocks
+- **Minimal shadow usage**—shadows are reserved for elements requiring elevated attention
+- Higher information density than landing pages
+
+#### Content Containment on Detail Pages
+
+Detail pages use **borders for visual grouping**, not shadows. This creates clear content hierarchy without visual heaviness.
+
+**Bordered Sections**:
+```jsx
+{/* Self-contained content block */}
+<div className="border border-colors-gray-100 rounded-lg p-4">
+  <h3 className="title-medium mb-2">Section Title</h3>
+  <p className="body-medium text-colors-gray-600">Content here...</p>
+</div>
+```
+
+**When to Use Borders**:
+- Grouping related information (e.g., "Restaurant Info", "Hours", "Location")
+- Creating visual separation between distinct content areas
+- Containing interactive elements like accordions or expandable sections
+- Wrapping form sections or input groups
+
+**When NOT to Use Borders**:
+- Every single element on the page
+- Text content that flows naturally
+- Items that are already visually distinct through spacing or typography
+- Inline elements or simple lists
+
+#### Shadow Usage on Detail Pages
+
+**Shadows are used sparingly** on detail pages. They should draw attention to specific interactive or elevated elements, not be applied broadly.
+
+**Appropriate Shadow Usage**:
+- Sticky footer CTAs
+- Floating action buttons
+- Modal dialogs and overlays
+- Dropdown menus when open
+- Elements that need to appear "above" the page
+
+**Avoid Shadows On**:
+- Standard content cards or sections
+- Bordered containers (use border OR shadow, rarely both)
+- Static informational blocks
+- Every card or panel on the page
+
+```jsx
+{/* CORRECT: Border for containment, no shadow */}
+<div className="border border-colors-gray-100 rounded-lg p-4">
+  <h3>Restaurant Hours</h3>
+  {/* content */}
+</div>
+
+{/* CORRECT: Shadow for floating/elevated element */}
+<div className="fixed bottom-0 bg-white shadow-[var(--card-shadow)] p-4">
+  <Button>Download App</Button>
+</div>
+
+{/* INCORRECT: Both border AND shadow on static content */}
+<div className="border border-colors-gray-100 rounded-lg p-4 shadow-[var(--card-shadow)]">
+  <h3>Restaurant Hours</h3>
+  {/* This is excessive—choose one or the other */}
+</div>
+```
+
+#### Visual Hierarchy Without Excess
+
+Create hierarchy through:
+1. **Typography** (headline vs body styles)
+2. **Spacing** (generous padding and margins)
+3. **Borders** (subtle, `gray-100` for most cases)
+4. **Background color** (white sections on gray page background, or vice versa)
+
+Reserve for special emphasis:
+- Shadows
+- Bold borders (thicker than 1px or darker than `gray-200`)
+- Background color changes within a section
 
 ---
 
@@ -747,7 +974,13 @@ Use these specific colors for Premium elements:
 
 ## Shadows & Elevation
 
-Offline uses a three-tier shadow system for different UI elevations.
+Offline uses a three-tier shadow system for different UI elevations. **Shadows should be used sparingly**—they are reserved for elements that need to appear elevated or require special attention.
+
+### Philosophy: Less Is More
+
+Shadows create visual weight and draw attention. Overusing shadows makes pages feel heavy and diminishes their effectiveness. On detail pages especially, prefer borders for containment and reserve shadows for truly elevated elements.
+
+**Rule of thumb**: If you're tempted to add a shadow to a static content block, use a border instead. Save shadows for interactive or floating elements.
 
 ### Shadow Variables
 
@@ -788,6 +1021,21 @@ box-shadow: var(--card-shadow);
 ```
 
 **Usage**: Badges, tags, small floating elements
+
+### When to Use Shadows
+
+| Element Type | Shadow Recommendation |
+|--------------|----------------------|
+| Static content cards | **No shadow** — use border instead |
+| Bordered info sections | **No shadow** — border provides containment |
+| Sticky footer/header | `--card-shadow` — needs elevation |
+| Modal dialogs | `--new-shadow` — high elevation |
+| Dropdown menus | `--card-shadow` or `--new-shadow` |
+| Floating action buttons | `--card-shadow` |
+| Badges/tags (floating) | `--tag-shadow` |
+| Popovers/tooltips | `--new-shadow` |
+
+**Key principle**: A shadow indicates that an element is "floating above" the page. Static content doesn't float—it's part of the page. Use borders for static containment, shadows for floating elements.
 
 ### Border Radius Standards
 
@@ -1011,19 +1259,26 @@ html {
    - Don't modify logo dimensions
    - Don't create new shadow values
 
-5. **Premium Styling**
+5. **Shadows & Borders**
+   - Don't apply shadows to every card or content block
+   - Don't combine borders AND shadows on the same static element
+   - Don't use shadows for visual containment—use borders instead
+   - Don't treat shadows as decoration; they indicate elevation
+   - Don't add drop shadows to bordered info sections on detail pages
+
+6. **Premium Styling**
    - Don't use Premium styling for standard offers
    - Don't change Premium color scheme (gold must stay gold)
    - Don't apply Premium treatment inconsistently
    - Don't use colored backgrounds for Premium cards (keep white)
 
-6. **General**
+7. **General**
    - Don't add decorative elements that conflict with minimal aesthetic
    - Don't use rounded corners inconsistently
    - Don't ignore hover/focus states
    - Don't skip accessibility considerations
 
-7. **Animations**
+8. **Animations**
    - Don't create animations longer than 0.5s without good reason
    - Don't animate too many elements simultaneously
    - Don't use `will-change` on everything (performance impact)
@@ -1135,5 +1390,7 @@ my-6   /* 24px vertical margin */
 
 ## Revision History
 
+- **v1.3** - Added Logo & Brand Assets section with all icon/wordmark URLs (PNG & SVG), placement guidelines, and sizing reference
+- **v1.2** - Added Page Structure section distinguishing landing pages vs detail pages, clarified borders vs shadows usage (shadows sparingly, borders for containment)
 - **v1.1** - Added DM Mono typography for statistics, landing page styling patterns (blue CTAs, hover effects), animations & performance section
 - **v1.0** - Initial style guide created based on Tailwind configuration and existing component patterns
