@@ -44,59 +44,69 @@
 
         body {
             font-family: "Satoshi", -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #fafafa;
+            background: var(--colors-gray-25);
             color: var(--colors-gray-900);
             line-height: 1.6;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
             padding: 40px 20px;
         }
 
         header {
-            background: var(--colors-gray-900);
+            background: var(--black);
             color: white;
             padding: 60px 20px;
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 48px;
+        }
+
+        header .header-logo {
+            height: 42px;
+            margin-bottom: 24px;
         }
 
         header h1 {
             font-family: "Cabinet Grotesk", sans-serif;
-            font-size: 48px;
+            font-size: 36px;
             font-weight: 800;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
+            line-height: 100%;
         }
 
         header p {
-            font-size: 18px;
-            opacity: 0.9;
+            font-size: 16px;
+            color: var(--colors-gray-400);
         }
 
         section {
             background: white;
-            border-radius: 12px;
+            border-radius: 8px;
             padding: 40px;
-            margin-bottom: 40px;
-            box-shadow: var(--card-shadow);
+            margin-bottom: 32px;
+            border: 1px solid var(--colors-gray-100);
         }
 
         h2 {
-            font-size: 32px;
+            font-family: "Satoshi", sans-serif;
+            font-size: 26px;
             font-weight: 700;
+            line-height: 32px;
             margin-bottom: 24px;
-            border-bottom: 3px solid var(--colors-yellow-400);
+            border-bottom: 2px solid var(--colors-yellow-400);
             padding-bottom: 12px;
         }
 
         h3 {
-            font-size: 24px;
+            font-family: "Satoshi", sans-serif;
+            font-size: 20px;
             font-weight: 700;
+            line-height: 24px;
             margin-top: 32px;
             margin-bottom: 16px;
-            color: var(--colors-gray-700);
+            color: var(--colors-gray-900);
         }
 
         .type-sample {
@@ -104,7 +114,7 @@
             padding: 24px;
             background: var(--colors-gray-25);
             border-radius: 8px;
-            border-left: 4px solid var(--colors-yellow-400);
+            border: 1px solid var(--colors-gray-100);
         }
 
         .type-sample-header {
@@ -142,7 +152,7 @@
         .color-swatch {
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid var(--colors-gray-100);
         }
 
         .color-display {
@@ -176,12 +186,13 @@
 
         .code-block {
             background: var(--colors-gray-900);
-            color: #e0e0e0;
+            color: var(--colors-gray-100);
             padding: 16px;
-            border-radius: 6px;
+            border-radius: 8px;
             overflow-x: auto;
             font-family: "DM Mono", monospace;
-            font-size: 13px;
+            font-size: 12px;
+            line-height: 1.5;
             margin-top: 12px;
         }
 
@@ -206,17 +217,21 @@
             background: white;
             border-radius: 8px;
             text-align: center;
+            border: 1px solid var(--colors-gray-100);
         }
 
         .shadow-box.card {
+            border: none;
             box-shadow: var(--card-shadow);
         }
 
         .shadow-box.new {
+            border: none;
             box-shadow: var(--new-shadow);
         }
 
         .shadow-box.tag {
+            border: none;
             box-shadow: var(--tag-shadow);
         }
 
@@ -251,11 +266,11 @@
         }
 
         .nav-footer {
-            margin-top: 80px;
+            margin-top: 64px;
             padding: 40px;
-            background: var(--colors-gray-900);
+            background: var(--black);
             color: white;
-            border-radius: 12px;
+            border-radius: 8px;
             text-align: center;
         }
 
@@ -263,15 +278,20 @@
             color: var(--colors-yellow-400);
             text-decoration: none;
             font-weight: 700;
+            transition: opacity 0.3s;
         }
 
         .nav-footer a:hover {
-            text-decoration: underline;
+            opacity: 0.8;
         }
 
         @media (max-width: 768px) {
             header h1 {
-                font-size: 32px;
+                font-size: 29px;
+            }
+
+            header .header-logo {
+                height: 32px;
             }
 
             section {
@@ -286,7 +306,8 @@
 </head>
 <body>
     <header>
-        <h1>Offline Brand Style Guide</h1>
+        <img src="https://premium-production.s3.us-east-1.amazonaws.com/public-assets/icon-styles/wordmark-white.svg" alt="Offline" class="header-logo">
+        <h1>Brand Style Guide</h1>
         <p>Design system for all Offline properties and subdomains</p>
     </header>
 
@@ -726,9 +747,9 @@ wordmark-white.png       |  wordmark-white.svg</div>
                 <div class="color-swatch">
                     <div class="color-display" style="background: #191919;"></div>
                     <div class="color-info">
-                        <div class="color-name" style="color: white;">Gray 900 ⭐</div>
-                        <div class="color-hex" style="color: white;">#191919</div>
-                        <div class="color-var" style="color: white;">--colors-gray-900</div>
+                        <div class="color-name">Gray 900 ⭐</div>
+                        <div class="color-hex">#191919</div>
+                        <div class="color-var">--colors-gray-900</div>
                     </div>
                 </div>
             </div>
@@ -769,7 +790,7 @@ wordmark-white.png       |  wordmark-white.svg</div>
 
             <h3>Page Types</h3>
             <div style="margin-top: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
-                <div style="padding: 24px; background: var(--colors-gray-25); border-radius: 8px; border-left: 4px solid var(--colors-blue-400);">
+                <div style="padding: 24px; background: white; border-radius: 8px; border: 1px solid var(--colors-gray-100);">
                     <div class="title-large" style="margin-bottom: 12px;">Landing Pages</div>
                     <ul class="body-medium" style="margin-left: 20px; color: var(--colors-gray-700);">
                         <li>Full-width hero sections</li>
@@ -779,7 +800,7 @@ wordmark-white.png       |  wordmark-white.svg</div>
                         <li>High visual impact</li>
                     </ul>
                 </div>
-                <div style="padding: 24px; background: var(--colors-gray-25); border-radius: 8px; border-left: 4px solid var(--colors-yellow-400);">
+                <div style="padding: 24px; background: white; border-radius: 8px; border: 1px solid var(--colors-gray-100);">
                     <div class="title-large" style="margin-bottom: 12px;">Detail Pages</div>
                     <ul class="body-medium" style="margin-left: 20px; color: var(--colors-gray-700);">
                         <li>Two-column layout</li>
@@ -792,7 +813,7 @@ wordmark-white.png       |  wordmark-white.svg</div>
             </div>
 
             <h3>Borders vs Shadows: When to Use Each</h3>
-            <p class="body-medium" style="margin-top: 16px; padding: 16px; background: var(--colors-yellow-50); border-radius: 8px; border-left: 4px solid var(--colors-yellow-400);">
+            <p class="body-medium" style="margin-top: 16px; padding: 16px; background: var(--colors-yellow-50); border-radius: 8px; border: 1px solid var(--colors-yellow-200);">
                 <strong>Key Principle:</strong> Shadows indicate that an element is "floating above" the page. Static content doesn't float—use borders for containment, shadows for elevated elements.
             </p>
 
@@ -991,22 +1012,22 @@ wordmark-white.png       |  wordmark-white.svg</div>
             <p class="body-medium">Consistent Tailwind spacing scale.</p>
             <div style="margin-top: 24px;">
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
-                    <div style="padding: 16px; background: var(--colors-gray-25); border-radius: 8px; border-left: 4px solid var(--colors-yellow-400);">
+                    <div style="padding: 16px; background: white; border-radius: 8px; border: 1px solid var(--colors-gray-100);">
                         <div class="label-large" style="margin-bottom: 8px;">gap-2, gap-3, gap-4</div>
                         <div class="body-small" style="color: var(--colors-gray-600);">8px, 12px, 16px</div>
                         <div class="body-x-small" style="color: var(--colors-gray-500); margin-top: 4px;">Small gaps</div>
                     </div>
-                    <div style="padding: 16px; background: var(--colors-gray-25); border-radius: 8px; border-left: 4px solid var(--colors-blue-400);">
+                    <div style="padding: 16px; background: white; border-radius: 8px; border: 1px solid var(--colors-gray-100);">
                         <div class="label-large" style="margin-bottom: 8px;">gap-6, gap-8</div>
                         <div class="body-small" style="color: var(--colors-gray-600);">24px, 32px</div>
                         <div class="body-x-small" style="color: var(--colors-gray-500); margin-top: 4px;">Medium gaps</div>
                     </div>
-                    <div style="padding: 16px; background: var(--colors-gray-25); border-radius: 8px; border-left: 4px solid var(--colors-teal-500);">
+                    <div style="padding: 16px; background: white; border-radius: 8px; border: 1px solid var(--colors-gray-100);">
                         <div class="label-large" style="margin-bottom: 8px;">gap-12, gap-16</div>
                         <div class="body-small" style="color: var(--colors-gray-600);">48px, 64px</div>
                         <div class="body-x-small" style="color: var(--colors-gray-500); margin-top: 4px;">Large gaps</div>
                     </div>
-                    <div style="padding: 16px; background: var(--colors-gray-25); border-radius: 8px; border-left: 4px solid var(--colors-gray-600);">
+                    <div style="padding: 16px; background: white; border-radius: 8px; border: 1px solid var(--colors-gray-100);">
                         <div class="label-large" style="margin-bottom: 8px;">py-4, py-6, py-8</div>
                         <div class="body-small" style="color: var(--colors-gray-600);">16px, 24px, 32px</div>
                         <div class="body-x-small" style="color: var(--colors-gray-500); margin-top: 4px;">Section padding</div>
@@ -1156,12 +1177,13 @@ wordmark-white.png       |  wordmark-white.svg</div>
 
         <!-- Resources Footer -->
         <div class="nav-footer">
-            <h3 style="margin-bottom: 16px; color: white;">Additional Resources</h3>
+            <img src="https://premium-production.s3.us-east-1.amazonaws.com/public-assets/icon-styles/wordmark-white.svg" alt="Offline" style="height: 32px; margin-bottom: 24px;">
+            <h3 style="margin-bottom: 16px; color: white; margin-top: 0; font-size: 18px;">Additional Resources</h3>
             <p class="body-medium" style="margin-bottom: 16px;">
                 <a href="ai-style-guide.md">AI Style Guide (Markdown)</a> •
                 <a href="offline_styles.css">CSS Variables</a>
             </p>
-            <p class="body-small" style="opacity: 0.7;">
+            <p class="body-small" style="color: var(--colors-gray-500);">
                 Offline Brand Style Guide • v1.3 • For use across all Offline properties
             </p>
         </div>
