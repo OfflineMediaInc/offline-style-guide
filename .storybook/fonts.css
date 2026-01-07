@@ -1,0 +1,212 @@
+/* Satoshi Font */
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/satoshi/Satoshi-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/satoshi/Satoshi-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/satoshi/Satoshi-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Cabinet Grotesk Font - ExtrabBold only, used for display headings */
+@font-face {
+  font-family: 'Cabinet Grotesk';
+  src: url('/fonts/cabinet-grotesk/CabinetGrotesk-ExtraBold.woff2') format('woff2');
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* DM Mono Font */
+@font-face {
+  font-family: 'DM Mono';
+  src: url('/fonts/dm-mono/dm-mono-latin-500-normal.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Set CSS variables that match Next.js font loading */
+:root {
+  --font-satoshi: 'Satoshi', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-cabinet-grotesk: 'Cabinet Grotesk', 'Satoshi', sans-serif;
+  --font-dm-mono: 'DM Mono', 'SFMono-Regular', Menlo, monospace;
+}
+
+/* Ensure Storybook body inherits fonts */
+html, body {
+  font-family: var(--font-satoshi) !important;
+}
+
+/* Storybook wrapper elements */
+.sb-show-main.sb-main-padded,
+#storybook-root,
+#storybook-root > * {
+  font-family: var(--font-satoshi);
+}
+
+/* ===========================================
+   Offline Typography Classes for Storybook
+   (Overrides @layer components from globals.css)
+   =========================================== */
+
+/* Display - Cabinet Grotesk Extra Bold */
+.display-large {
+  font-family: 'Cabinet Grotesk', var(--font-satoshi), sans-serif;
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0;
+}
+.display-medium {
+  font-family: 'Cabinet Grotesk', var(--font-satoshi), sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0;
+}
+.display-small {
+  font-family: 'Cabinet Grotesk', var(--font-satoshi), sans-serif;
+  font-size: 29px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+/* Headlines - Satoshi Bold */
+.headline-large {
+  font-family: var(--font-satoshi);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+}
+.headline-medium {
+  font-family: var(--font-satoshi);
+  font-size: 23px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+}
+.headline-small {
+  font-family: var(--font-satoshi);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+/* Titles - Satoshi Bold */
+.title-large {
+  font-family: var(--font-satoshi);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+}
+.title-medium {
+  font-family: var(--font-satoshi);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+}
+.title-small {
+  font-family: var(--font-satoshi);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+/* Body - Satoshi Medium */
+.body-large {
+  font-family: var(--font-satoshi);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+}
+.body-medium {
+  font-family: var(--font-satoshi);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+}
+.body-small {
+  font-family: var(--font-satoshi);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+}
+.body-x-small {
+  font-family: var(--font-satoshi);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 0;
+}
+
+/* Labels - Satoshi Bold */
+.label-large {
+  font-family: var(--font-satoshi);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+}
+.label-medium {
+  font-family: var(--font-satoshi);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+}
+.label-small {
+  font-family: var(--font-satoshi);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+/* Navigation */
+.nav-label {
+  font-family: var(--font-satoshi);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.33em;
+}
+.nav-link {
+  font-family: var(--font-satoshi);
+  font-size: 22px;
+  font-weight: 500;
+  transition: opacity 0.3s ease;
+}
+.nav-link:hover {
+  opacity: 0.72;
+}
+
+/* Stats - DM Mono */
+.stat-mono {
+  font-family: var(--font-dm-mono);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
