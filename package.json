@@ -48,7 +48,6 @@
     "eslint-plugin-storybook": "^10.1.11",
     "playwright": "^1.57.0",
     "storybook": "^10.1.11",
-    "storybook-addon-playground": "^3.0.0",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vite": "^7.3.1",
