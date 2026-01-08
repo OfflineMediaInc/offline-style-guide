@@ -1,14 +1,56 @@
 {
-  "name": "offline-style-guide",
+  "name": "@offlinemediainc/offline-ui",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "description": "Offline Media design system components",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/offlinemediainc/offline-style-guide.git"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:lib": "tsup && cp src/styles/theme.css dist/styles.css",
     "start": "next start",
     "lint": "eslint",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "prepublishOnly": "pnpm run build:lib",
+    "chromatic": "chromatic --exit-zero-on-changes"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "next": ">=14.0.0"
+  },
+  "peerDependenciesMeta": {
+    "next": {
+      "optional": true
+    }
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.11",
@@ -24,9 +66,6 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.562.0",
-    "next": "16.1.1",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
@@ -43,12 +82,17 @@
     "@types/react-dom": "^19",
     "@vitest/browser-playwright": "^4.0.16",
     "@vitest/coverage-v8": "^4.0.16",
+    "chromatic": "^11.0.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
     "eslint-plugin-storybook": "^10.1.11",
+    "next": "16.1.1",
     "playwright": "^1.57.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
     "storybook": "^10.1.11",
     "tailwindcss": "^4",
+    "tsup": "^8.5.1",
     "typescript": "^5",
     "vite": "^7.3.1",
     "vitest": "^4.0.16"

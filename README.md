@@ -1,8 +1,114 @@
-# Offline Design System
+# @offlinemediainc/offline-ui
 
-A Storybook-based design system for Offline applications. Contains reusable UI components, theme documentation, and brand styling.
+Offline Media design system components built with React, Radix UI, and Tailwind CSS.
 
-## Quick Start
+## Installation
+
+```bash
+pnpm add @offlinemediainc/offline-ui
+```
+
+## Setup
+
+### 1. Import the styles
+
+Add the theme CSS to your app's entry point:
+
+```tsx
+// app/layout.tsx or _app.tsx
+import '@offlinemediainc/offline-ui/styles.css';
+```
+
+### 2. Configure Tailwind (if using Tailwind CSS v4)
+
+Add the package to your CSS source scanning:
+
+```css
+@import "tailwindcss";
+@source "../node_modules/@offlinemediainc/offline-ui/dist/**/*.js";
+```
+
+### 3. Use components
+
+```tsx
+import { Button, Card, Dialog, Badge } from '@offlinemediainc/offline-ui';
+
+export function MyComponent() {
+  return (
+    <Card>
+      <Badge variant="success">Active</Badge>
+      <Button>Click me</Button>
+    </Card>
+  );
+}
+```
+
+## Components
+
+### Core Components
+- `Avatar`, `AvatarImage`, `AvatarFallback`
+- `Badge` - with variants: default, secondary, destructive, success, warning, outline, link
+- `Button` - with variants: default, destructive, outline, secondary, ghost, link
+- `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`
+- `Collapsible`, `CollapsibleTrigger`, `CollapsibleContent`
+- `Dialog`, `DialogTrigger`, `DialogContent`, `DialogHeader`, `DialogFooter`, `DialogTitle`, `DialogDescription`
+- `DropdownMenu` and sub-components
+- `Input`
+- `Item`, `ItemGroup`, `ItemMedia`, `ItemContent`, `ItemTitle`, `ItemDescription`, `ItemActions`
+- `Label`
+- `Separator`
+- `Sheet` and sub-components
+- `Sidebar` and sub-components (SidebarProvider, SidebarMenu, SidebarMenuItem, etc.)
+- `Skeleton`
+- `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent`
+- `Tooltip`, `TooltipTrigger`, `TooltipContent`, `TooltipProvider`
+
+### Next.js Components
+
+The following components require Next.js (uses `next/image`, `next/link`, `next/navigation`):
+
+- `OfflineSidebar` - Full application sidebar layout with Offline branding
+
+```tsx
+import { OfflineSidebar } from '@offlinemediainc/offline-ui';
+import { LayoutDashboard, Settings } from 'lucide-react';
+
+export default function Layout({ children }) {
+  return (
+    <OfflineSidebar
+      workspace={{ name: "My App", subtitle: "Offline" }}
+      user={{ name: "John Doe", email: "john@example.com" }}
+      navGroups={[
+        {
+          label: "Main",
+          items: [
+            { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard },
+            { title: "Settings", url: "/settings", icon: Settings },
+          ]
+        }
+      ]}
+      onLogout={() => signOut()}
+    >
+      {children}
+    </OfflineSidebar>
+  );
+}
+```
+
+### Utilities
+
+- `cn()` - Class name utility (clsx + tailwind-merge)
+- `useIsMobile()` - Hook for mobile breakpoint detection
+
+## Storybook
+
+View the component documentation: [Storybook](https://your-chromatic-url.chromatic.com)
+
+---
+
+## Development
+
+### Quick Start
 
 ```bash
 # Install dependencies
@@ -14,49 +120,33 @@ pnpm storybook
 
 Storybook will be available at http://localhost:6006
 
-## What's Included
+### Build the library
 
-### Theme
-Documentation for the Offline visual language:
-- **Colors** - Brand colors, semantic colors, and color palette
-- **Typography** - Reference and component typography scales
-- **Shadows** - Elevation and shadow styles
-- **Surfaces** - Card and surface treatments
+```bash
+pnpm build:lib
+```
 
-### UI Components
-Reusable React components built with shadcn/ui patterns:
-- Badge, Button, Card, Dialog, Input, Sheet, Tabs
-- Item (metadata rows)
-- Sidebar (full application sidebar layout)
-
-## Project Structure
+### Project Structure
 
 ```
 offline-style-guide/
+├── src/                 # Library source (published to npm)
+│   ├── components/      # UI components
+│   ├── hooks/           # React hooks
+│   ├── lib/             # Utilities
+│   └── styles/          # Theme CSS
+├── components/ui/       # Original components + stories
+├── stories/theme/       # Theme documentation stories
 ├── .storybook/          # Storybook configuration
-├── components/
-│   └── ui/              # UI components + stories
-├── stories/
-│   └── theme/           # Theme documentation stories
-├── lib/                 # Utilities (cn function)
-├── hooks/               # React hooks (useIsMobile)
-├── app/
-│   └── globals.css      # CSS variables and typography
-├── tailwind.config.ts   # Tailwind theme configuration
-└── Style Guide V1/      # Legacy static style guide
+├── dist/                # Built library output
+└── app/                 # Next.js demo app
 ```
 
-## Tech Stack
+### Tech Stack
 
 - **Framework**: Next.js 16 + React 19
-- **Styling**: Tailwind CSS with CSS variables
+- **Styling**: Tailwind CSS v4 with CSS variables
 - **Component Primitives**: Radix UI
 - **Icons**: Lucide React
 - **Documentation**: Storybook 10
-
-## Legacy Style Guide
-
-The original static HTML/CSS style guide is preserved in the `Style Guide V1/` folder for reference. This included:
-- `index.html` - Interactive visual guide
-- `offline_styles.css` - CSS library
-- `ai-style-guide.md` - Markdown documentation
+- **Build**: tsup
