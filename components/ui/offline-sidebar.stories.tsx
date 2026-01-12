@@ -29,6 +29,10 @@ const meta: Meta<typeof OfflineSidebar> = {
   parameters: {
     layout: "fullscreen",
     docs: {
+      story: {
+        inline: false, // Render in iframe to contain fixed positioning
+        iframeHeight: 600,
+      },
       description: {
         component: `
 ## Offline Sidebar Layout
@@ -168,7 +172,7 @@ export const PartnerPortal: Story = {
     },
     user: {
       name: "Chris Borreson",
-      email: "chris@wyehill.com",
+      email: "chris@example.com",
     },
     navGroups: partnerNavGroups,
   },
@@ -248,7 +252,7 @@ export const AdminPortal: Story = {
     },
     user: {
       name: "David Shaner",
-      email: "david@letsgetoffline.com",
+      email: "david@example.com",
     },
     navGroups: adminNavGroups,
   },
@@ -350,7 +354,7 @@ export const WithWorkspaceSwitcher: Story = {
     ],
     user: {
       name: "Chris Borreson",
-      email: "chris@wyehill.com",
+      email: "chris@example.com",
     },
     navGroups: partnerNavGroups,
   },
@@ -374,7 +378,7 @@ export const CollapsedByDefault: Story = {
     },
     user: {
       name: "Chris Borreson",
-      email: "chris@wyehill.com",
+      email: "chris@example.com",
     },
     navGroups: partnerNavGroups,
     defaultCollapsed: true,

@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
 /* Tell Tailwind v4 where to scan for classes */
 @source "../components/**/*.{js,ts,jsx,tsx}";
 @source "../stories/**/*.{js,ts,jsx,tsx,mdx}";
@@ -383,3 +385,4 @@
     font-family: inherit !important;
   }
 }
+
