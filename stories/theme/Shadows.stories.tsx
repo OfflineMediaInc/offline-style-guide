@@ -41,12 +41,10 @@ type Story = StoryObj<typeof meta>
 const ShadowBox = ({
   label,
   className,
-  cssVar,
   description,
 }: {
   label: string
   className: string
-  cssVar: string
   description: string
 }) => (
   <div className="flex flex-col items-center gap-4 p-6">
@@ -73,19 +71,16 @@ export const AllShadows: Story = {
         <ShadowBox
           label="Card"
           className="shadow-card"
-          cssVar="--card-shadow"
           description="Subtle depth for cards"
         />
         <ShadowBox
           label="Tag"
           className="shadow-tag"
-          cssVar="--tag-shadow"
           description="Medium depth for tags"
         />
         <ShadowBox
           label="Elevated"
           className="shadow-elevated"
-          cssVar="--new-shadow"
           description="Strong depth for modals"
         />
       </div>

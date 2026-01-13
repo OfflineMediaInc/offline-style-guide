@@ -58,7 +58,7 @@ export const DefaultSize: Story = {
       </CardHeader>
       <CardContent>
         <p className="text-sm">
-          The card component supports a size prop that defaults to "default" for standard spacing and sizing.
+          The card component supports a size prop that defaults to &quot;default&quot; for standard spacing and sizing.
         </p>
       </CardContent>
       <CardFooter>
@@ -77,7 +77,7 @@ export const SmallSize: Story = {
       </CardHeader>
       <CardContent className="p-4 pt-0">
         <p className="text-sm">
-          The card component supports a size prop that can be set to "sm" for a more compact appearance.
+          The card component supports a size prop that can be set to &quot;sm&quot; for a more compact appearance.
         </p>
       </CardContent>
       <CardFooter className="p-4 pt-0">
@@ -212,7 +212,7 @@ export const Login: Story = {
         <Button className="w-full">Login</Button>
         <Button variant="outline" className="w-full">Login with Google</Button>
         <p className="text-sm text-center text-muted-foreground pt-2">
-          Don't have an account? <a href="#" className="underline">Sign up</a>
+          Don&apos;t have an account? <a href="#" className="underline">Sign up</a>
         </p>
       </CardFooter>
     </Card>

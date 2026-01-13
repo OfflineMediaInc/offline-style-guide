@@ -220,7 +220,7 @@ export const StatusBadges: Story = {
           <Badge variant="warning">Pending Setup</Badge>
           <Badge variant="secondary">Active (Pending Launch Date)</Badge>
           <Badge variant="secondary">Active (Launching Feb 15)</Badge>
-          <Badge variant="outline">Launched Dec '24</Badge>
+          <Badge variant="outline">Launched Dec &apos;24</Badge>
         </div>
       </div>
       <div>

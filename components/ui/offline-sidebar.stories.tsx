@@ -20,7 +20,7 @@ import {
   Rocket,
   History,
 } from "lucide-react"
-import { OfflineSidebar, type NavGroup, type NavItem } from "./offline-sidebar"
+import { OfflineSidebar, type NavGroup } from "./offline-sidebar"
 
 const meta: Meta<typeof OfflineSidebar> = {
   title: "UI/Sidebar",

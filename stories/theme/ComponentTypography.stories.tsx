@@ -111,7 +111,7 @@ export const CommonCombinations: Story = {
     <div className="space-y-6">
       <h3 className="text-lg font-bold mb-2">Common Combinations in Components</h3>
       <p className="text-sm text-muted-foreground mb-6">
-        These are the patterns you'll see in shadcn components.
+        These are the patterns you&apos;ll see in shadcn components.
       </p>
 
       <div className="border rounded-lg p-4 space-y-4">
