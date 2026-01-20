@@ -1,6 +1,6 @@
 {
   "name": "@offlinemediainc/offline-ui",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": false,
   "description": "Offline Media design system components",
   "license": "MIT",
@@ -72,6 +72,7 @@
     "clsx": "^2.1.1",
     "input-otp": "^1.4.2",
     "lucide-react": "^0.562.0",
+    "recharts": "2.15.4",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.4.0"
   },

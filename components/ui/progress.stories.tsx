@@ -3,7 +3,7 @@ import { Progress } from "./progress"
 import { useState, useEffect } from "react"
 
 const meta: Meta<typeof Progress> = {
-  title: "Draft/Progress",
+  title: "UI/Progress",
   component: Progress,
   tags: ["autodocs"],
   parameters: {
@@ -194,3 +194,129 @@ export const MultiStep: Story = {
     </div>
   ),
 }
+
+export const ChartColors: Story = {
+  name: "Chart Color Variants",
+  render: () => (
+    <div className="w-[60%] space-y-4">
+      <p className="body-medium text-muted-foreground mb-2">
+        Progress bars can use the chart color palette for data visualization contexts.
+        Override the indicator color using the <code>{"[&>div]:"}</code> selector.
+      </p>
+      <div className="space-y-3">
+        <div className="space-y-1">
+          <p className="text-sm">chart-1 (Yellow-400)</p>
+          <Progress value={70} className="[&>div]:bg-[hsl(var(--chart-1))]" />
+        </div>
+        <div className="space-y-1">
+          <p className="text-sm">chart-2 (Blue-400)</p>
+          <Progress value={55} className="[&>div]:bg-[hsl(var(--chart-2))]" />
+        </div>
+        <div className="space-y-1">
+          <p className="text-sm">chart-3 (Success Green)</p>
+          <Progress value={85} className="[&>div]:bg-[hsl(var(--chart-3))]" />
+        </div>
+        <div className="space-y-1">
+          <p className="text-sm">chart-4 (Gray-600)</p>
+          <Progress value={40} className="[&>div]:bg-[hsl(var(--chart-4))]" />
+        </div>
+        <div className="space-y-1">
+          <p className="text-sm">chart-5 (Red-400)</p>
+          <Progress value={25} className="[&>div]:bg-[hsl(var(--chart-5))]" />
+        </div>
+      </div>
+    </div>
+  ),
+  parameters: {
+    docs: {
+      description: {
+        story: "Use the `[&>div]:bg-[hsl(var(--chart-N))]` pattern to apply chart colors to progress bars. This keeps the color system consistent across charts and progress indicators.",
+      },
+    },
+  },
+}
+
+// Color class mapping - Tailwind JIT needs static class names
+const chartColorClasses = {
+  1: "[&>div]:bg-[hsl(var(--chart-1))]",
+  2: "[&>div]:bg-[hsl(var(--chart-2))]",
+  3: "[&>div]:bg-[hsl(var(--chart-3))]",
+  4: "[&>div]:bg-[hsl(var(--chart-4))]",
+  5: "[&>div]:bg-[hsl(var(--chart-5))]",
+  6: "[&>div]:bg-[hsl(var(--chart-6))]",
+  7: "[&>div]:bg-[hsl(var(--chart-7))]",
+  8: "[&>div]:bg-[hsl(var(--chart-8))]",
+} as const
+
+export const LabeledBreakdown: Story = {
+  name: "Labeled Breakdown (Data Viz Pattern)",
+  render: () => {
+    const data = [
+      { label: "Food", value: 70, chartColor: 5 as const },
+      { label: "Service", value: 33, chartColor: 1 as const },
+      { label: "Value", value: 21, chartColor: 2 as const },
+      { label: "Parking", value: 16, chartColor: 3 as const },
+      { label: "Atmosphere", value: 7, chartColor: 4 as const },
+      { label: "Drinks", value: 7, chartColor: 6 as const },
+      { label: "Other", value: 2, chartColor: 7 as const },
+    ]
+
+    return (
+      <div className="w-full max-w-lg rounded-lg border bg-card p-6 shadow-card">
+        <div className="mb-4">
+          <h3 className="title-medium">3 Stars & Below Ratings (150)</h3>
+          <p className="body-small text-muted-foreground">Areas That Require Improvements</p>
+        </div>
+        <div className="space-y-3">
+          {data.map((item) => (
+            <div key={item.label} className="flex items-center gap-3">
+              {/* Color dot indicator */}
+              <div
+                className="h-2.5 w-2.5 shrink-0 rounded-full"
+                style={{ backgroundColor: `hsl(var(--chart-${item.chartColor}))` }}
+              />
+              {/* Label */}
+              <span className="w-24 shrink-0 body-small">{item.label}</span>
+              {/* Progress bar */}
+              <Progress
+                value={item.value}
+                className={`h-2.5 flex-1 [&>div]:transition-all ${chartColorClasses[item.chartColor]}`}
+              />
+              {/* Percentage */}
+              <span className="w-10 text-right body-small text-muted-foreground">
+                {item.value}%
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: `
+A common data visualization pattern: labeled horizontal bars with legend dots.
+
+**Anatomy:**
+- Color dot (legend indicator)
+- Category label (fixed width for alignment)
+- Progress bar (flexible width)
+- Percentage value (right-aligned)
+
+**When to use:**
+- Showing breakdown by category (ratings, sources, types)
+- When you need labels visible alongside bars
+- When percentages should be prominently displayed
+
+**Why Progress instead of Recharts?**
+- Simpler, lighter weight
+- No axes or complex interactions needed
+- Each bar is independent (not comparative on shared scale)
+- Easier to style exactly as designed
+        `,
+      },
+    },
+  },
+}
+

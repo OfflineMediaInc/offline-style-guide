@@ -13,7 +13,7 @@ import {
 import { Button } from "./button"
 
 const meta: Meta<typeof AlertDialog> = {
-  title: "Draft/AlertDialog",
+  title: "UI/AlertDialog",
   component: AlertDialog,
   tags: ["autodocs"],
   parameters: {
@@ -33,6 +33,25 @@ A modal dialog that interrupts the user with important content and expects a res
 ### Usage
 - Use for destructive actions requiring confirmation
 - Use for important decisions that cannot be undone
+
+### Header Structure (Important)
+The dialog header should contain **only** a title and description—no icons, badges, or decorative elements.
+
+\`\`\`tsx
+// ✅ Correct
+<AlertDialogHeader>
+  <AlertDialogTitle>Title</AlertDialogTitle>
+  <AlertDialogDescription>Description text.</AlertDialogDescription>
+</AlertDialogHeader>
+
+// ❌ Avoid
+<AlertDialogHeader>
+  <Icon /> {/* Don't add icons */}
+  <AlertDialogTitle>Title</AlertDialogTitle>
+</AlertDialogHeader>
+\`\`\`
+
+This keeps dialogs focused and consistent across the product. If you feel a dialog needs visual emphasis, reconsider whether it should be a dialog at all.
         `,
       },
     },

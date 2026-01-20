@@ -8,7 +8,7 @@ import {
 import { Label } from "./label"
 
 const meta: Meta<typeof InputOTP> = {
-  title: "Draft/InputOTP",
+  title: "UI/InputOTP",
   component: InputOTP,
   tags: ["autodocs"],
   parameters: {
