@@ -38,3 +38,6 @@ export { cn } from "./lib/utils"
 
 // Hooks
 export { useIsMobile } from "./hooks/use-mobile"
+
+// Design System (LLM-friendly)
+export { offlineDesignSystem } from "./design-system"

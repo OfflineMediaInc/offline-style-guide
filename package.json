@@ -1,6 +1,6 @@
 {
   "name": "@offlinemediainc/offline-ui",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "private": false,
   "description": "Offline Media design system components",
   "license": "MIT",
@@ -20,7 +20,19 @@
         "default": "./dist/index.cjs"
       }
     },
-    "./styles.css": "./dist/styles.css"
+    "./design-system": {
+      "import": {
+        "types": "./dist/design-system/index.d.ts",
+        "default": "./dist/design-system/index.js"
+      },
+      "require": {
+        "types": "./dist/design-system/index.d.cts",
+        "default": "./dist/design-system/index.cjs"
+      }
+    },
+    "./design-system.json": "./dist/design-system.json",
+    "./styles.css": "./dist/styles.css",
+    "./USAGE.md": "./dist/USAGE.md"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -34,7 +46,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:lib": "tsup && cp src/styles/theme.css dist/styles.css",
+    "build:lib": "tsup && tsx scripts/build-design-system.ts && cp src/styles/theme.css dist/styles.css && cp src/USAGE.md dist/USAGE.md",
     "start": "next start",
     "lint": "eslint",
     "storybook": "storybook dev -p 6006",
@@ -103,6 +115,7 @@
     "tailwindcss": "^4",
     "tailwindcss-animate": "^1.0.7",
     "tsup": "^8.5.1",
+    "tsx": "^4.19.0",
     "typescript": "^5",
     "vite": "^7.3.1",
     "vitest": "^4.0.16"
