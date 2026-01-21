@@ -1,3 +1,4 @@
+import * as React from "react"
 import type { Meta, StoryObj } from "@storybook/react"
 import {
   LayoutDashboard,
@@ -20,7 +21,40 @@ import {
   Rocket,
   History,
 } from "lucide-react"
-import { OfflineSidebar, type NavGroup, type NavItem } from "./offline-sidebar"
+import { OfflineSidebar, type NavGroup } from "./offline-sidebar"
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "./breadcrumb"
+
+// Helper to build breadcrumb JSX for topbar
+function TopbarBreadcrumb({ items }: { items: Array<{ label: string; href?: string }> }) {
+  return (
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+        </BreadcrumbItem>
+        {items.map((item, index) => (
+          <React.Fragment key={item.label}>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              {index === items.length - 1 ? (
+                <BreadcrumbPage>{item.label}</BreadcrumbPage>
+              ) : (
+                <BreadcrumbLink href={item.href || "#"}>{item.label}</BreadcrumbLink>
+              )}
+            </BreadcrumbItem>
+          </React.Fragment>
+        ))}
+      </BreadcrumbList>
+    </Breadcrumb>
+  )
+}
 
 const meta: Meta<typeof OfflineSidebar> = {
   title: "UI/Sidebar",
@@ -76,6 +110,13 @@ import { OfflineSidebar } from "@/components/offline/OfflineSidebar"
   <YourPageContent />
 </OfflineSidebar>
 \`\`\`
+
+### Navigation System
+The sidebar works together with breadcrumbs to form a complete navigation system:
+- **Sidebar**: Primary navigation, shows available destinations
+- **Breadcrumbs**: Shows current location and path back to root
+
+The current page appears in both the breadcrumb (muted, non-link) and as the page h1—this is intentional. They serve different cognitive purposes. See **UI/Breadcrumb** for component details and UX rationale.
         `,
       },
     },
@@ -92,10 +133,10 @@ import { OfflineSidebar } from "@/components/offline/OfflineSidebar"
 export default meta
 type Story = StoryObj<typeof OfflineSidebar>
 
-// Sample content component
+// Sample content component - breadcrumbs now in topbar header
 const SampleContent = ({ title }: { title: string }) => (
   <div className="p-6">
-    <h1 className="text-2xl font-bold mb-4">{title}</h1>
+    <h1 className="text-2xl font-bold mb-6">{title}</h1>
     <div className="grid gap-4">
       <div className="surface-card p-6">
         <h2 className="title-medium mb-2">Welcome Card</h2>
@@ -177,7 +218,7 @@ export const PartnerPortal: Story = {
     navGroups: partnerNavGroups,
   },
   render: (args) => (
-    <OfflineSidebar {...args}>
+    <OfflineSidebar {...args} topbarContent={<TopbarBreadcrumb items={[{ label: "Dashboard" }]} />}>
       <SampleContent title="Partner Dashboard" />
     </OfflineSidebar>
   ),
@@ -257,7 +298,7 @@ export const AdminPortal: Story = {
     navGroups: adminNavGroups,
   },
   render: (args) => (
-    <OfflineSidebar {...args}>
+    <OfflineSidebar {...args} topbarContent={<TopbarBreadcrumb items={[{ label: "Dashboard" }]} />}>
       <SampleContent title="Admin Dashboard" />
     </OfflineSidebar>
   ),
@@ -330,8 +371,18 @@ export const DocumentationStyle: Story = {
     navGroups: docsNavGroups,
   },
   render: (args) => (
-    <OfflineSidebar {...args}>
-      <SampleContent title="Documentation" />
+    <OfflineSidebar
+      {...args}
+      topbarContent={
+        <TopbarBreadcrumb
+          items={[
+            { label: "Documentation", href: "/docs" },
+            { label: "Introduction" },
+          ]}
+        />
+      }
+    >
+      <SampleContent title="Introduction" />
     </OfflineSidebar>
   ),
 }
@@ -359,7 +410,7 @@ export const WithWorkspaceSwitcher: Story = {
     navGroups: partnerNavGroups,
   },
   render: (args) => (
-    <OfflineSidebar {...args}>
+    <OfflineSidebar {...args} topbarContent={<TopbarBreadcrumb items={[{ label: "Dashboard" }]} />}>
       <SampleContent title="Wye Hill Dashboard" />
     </OfflineSidebar>
   ),
@@ -384,7 +435,7 @@ export const CollapsedByDefault: Story = {
     defaultCollapsed: true,
   },
   render: (args) => (
-    <OfflineSidebar {...args}>
+    <OfflineSidebar {...args} topbarContent={<TopbarBreadcrumb items={[{ label: "Dashboard" }]} />}>
       <SampleContent title="Partner Dashboard" />
     </OfflineSidebar>
   ),
@@ -415,8 +466,8 @@ export const WithBadges: Story = {
     ],
   },
   render: (args) => (
-    <OfflineSidebar {...args}>
-      <SampleContent title="Dashboard with Badges" />
+    <OfflineSidebar {...args} topbarContent={<TopbarBreadcrumb items={[{ label: "Dashboard" }]} />}>
+      <SampleContent title="Dashboard" />
     </OfflineSidebar>
   ),
 }
@@ -439,8 +490,8 @@ export const MinimalNav: Story = {
     ],
   },
   render: (args) => (
-    <OfflineSidebar {...args}>
-      <SampleContent title="Minimal Dashboard" />
+    <OfflineSidebar {...args} topbarContent={<TopbarBreadcrumb items={[{ label: "Dashboard" }]} />}>
+      <SampleContent title="Dashboard" />
     </OfflineSidebar>
   ),
 }
@@ -459,8 +510,8 @@ export const NoUser: Story = {
     ],
   },
   render: (args) => (
-    <OfflineSidebar {...args}>
-      <SampleContent title="Public Page" />
+    <OfflineSidebar {...args} topbarContent={<TopbarBreadcrumb items={[{ label: "Events" }]} />}>
+      <SampleContent title="Events" />
     </OfflineSidebar>
   ),
 }

@@ -53,11 +53,9 @@ const ColorSwatch = ({
 
 const ColorScale = ({
   name,
-  prefix,
   colors
 }: {
   name: string
-  prefix: string
   colors: { level: string; hex: string }[]
 }) => (
   <div className="mb-8">
@@ -82,7 +80,6 @@ export const YellowScale: Story = {
   render: () => (
     <ColorScale
       name="Yellow - Brand Accent"
-      prefix="--colors-yellow"
       colors={[
         { level: "25", hex: "#fff2d8" },
         { level: "50", hex: "#ffe9bd" },
@@ -105,7 +102,6 @@ export const GrayScale: Story = {
   render: () => (
     <ColorScale
       name="Gray - UI & Text"
-      prefix="--colors-gray"
       colors={[
         { level: "25", hex: "#f2f2f2" },
         { level: "50", hex: "#ececec" },
@@ -128,7 +124,6 @@ export const BlueScale: Story = {
   render: () => (
     <ColorScale
       name="Blue - Links & Actions"
-      prefix="--colors-blue"
       colors={[
         { level: "25", hex: "#d8e7ff" },
         { level: "50", hex: "#bed6ff" },

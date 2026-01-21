@@ -30,6 +30,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { Separator } from "@/components/ui/separator"
 import {
   Sidebar,
   SidebarContent,
@@ -116,6 +117,8 @@ export interface OfflineSidebarProps {
   workspaces?: SidebarWorkspace[]
   /** Callback when workspace changes */
   onWorkspaceChange?: (workspace: SidebarWorkspace) => void
+  /** Content for the topbar (e.g., breadcrumbs) */
+  topbarContent?: React.ReactNode
   /** Children for the main content area */
   children?: React.ReactNode
 }
@@ -435,12 +438,17 @@ function UserFooter({
   )
 }
 
-/** Top bar with sidebar trigger */
-function OfflineTopbar({ children }: { children?: React.ReactNode }) {
+/** Top bar with sidebar trigger and optional breadcrumbs */
+function OfflineTopbar({ breadcrumbs }: { breadcrumbs?: React.ReactNode }) {
   return (
-    <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4 md:px-6">
-      <SidebarTrigger className="-ml-1" />
-      <div className="flex-1">{children}</div>
+    <header className="flex h-16 shrink-0 items-center gap-2 border-b pl-2 pr-4 md:pl-2 md:pr-6">
+      <SidebarTrigger />
+      {breadcrumbs && (
+        <>
+          <Separator orientation="vertical" className="mr-2 h-4" />
+          {breadcrumbs}
+        </>
+      )}
     </header>
   )
 }
@@ -500,6 +508,7 @@ export function OfflineSidebar({
   onSettings,
   onHelp,
   onWorkspaceChange,
+  topbarContent,
   children,
 }: OfflineSidebarProps) {
   // Convert flat navItems to a single group if provided
@@ -539,7 +548,7 @@ export function OfflineSidebar({
       </Sidebar>
 
       <SidebarInset>
-        <OfflineTopbar />
+        <OfflineTopbar breadcrumbs={topbarContent} />
         <main className="flex-1 overflow-auto">
           {children}
         </main>
