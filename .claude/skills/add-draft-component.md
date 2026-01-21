@@ -111,3 +111,29 @@ When David approves, make these changes:
 - Components use CSS variables from `theme.css` (automatically themed)
 - Do NOT add to `src/index.ts` until approved
 - BarChart and custom visualizations are not standard shadcn - handle separately
+
+## Style Sync Checklist
+
+When working on this repo, verify these files stay in sync:
+
+### CSS Variables (theme.css ↔ globals.css)
+- [ ] Chart colors (`--chart-1` through `--chart-8`)
+- [ ] Sidebar variables (`--sidebar-*`)
+- [ ] Brand colors (`--colors-yellow-*`, `--colors-blue-*`, `--colors-gray-*`)
+
+### Typography Classes
+Both files should have identical definitions for:
+- `.display-large`, `.display-medium`, `.display-small`
+- `.headline-*`, `.title-*`, `.body-*`, `.label-*`
+- `.nav-label`, `.nav-link`, `.stat-mono`
+- `.badge-premium`
+
+### Key Locations
+| What | npm package | Storybook/dev |
+|------|-------------|---------------|
+| CSS variables & classes | `src/styles/theme.css` | `app/globals.css` |
+| Components | `src/components/` | - |
+| Stories | - | `components/ui/*.stories.tsx` |
+
+### Before Publishing
+Run `pnpm build:lib` and verify `dist/styles.css` contains all expected classes and variables.

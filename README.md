@@ -118,6 +118,17 @@ export default function Layout({ children }) {
 
 View the component documentation: [Storybook](https://your-chromatic-url.chromatic.com)
 
+## AI/LLM Usage
+
+When implementing with this design system, refer to the [Storybook documentation](https://your-chromatic-url.chromatic.com) for:
+
+- **Component usage patterns** - Each component has stories showing correct implementation
+- **Design decisions** - Story descriptions document constraints and guidelines
+- **Variants and props** - Interactive examples of all component options
+- **Composition patterns** - How components work together (e.g., Sidebar + Breadcrumb)
+
+The Storybook is the source of truth for how components should be used.
+
 ---
 
 ## Development
