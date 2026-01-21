@@ -17,7 +17,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
-} from "./chart"
+} from "../../src/components/chart"
 
 const meta: Meta = {
   title: "UI/Chart",
