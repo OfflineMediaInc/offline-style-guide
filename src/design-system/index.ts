@@ -55,7 +55,7 @@ export const offlineDesignSystem = {
   /** Package metadata */
   meta: {
     name: "@offlinemediainc/offline-ui",
-    version: "0.2.0",
+    version: "0.2.1",
     description: "Offline Media Design System - LLM-friendly design decisions and patterns",
   },
 

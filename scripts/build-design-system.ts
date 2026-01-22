@@ -23,7 +23,7 @@ const designSystem = {
   $schema: "https://offlinemediainc.github.io/offline-ui/design-system.schema.json",
   meta: {
     name: "@offlinemediainc/offline-ui",
-    version: "0.2.0",
+    version: "0.2.1",
     generatedAt: new Date().toISOString(),
     description: "Offline Media Design System - LLM-friendly design decisions and patterns",
   },

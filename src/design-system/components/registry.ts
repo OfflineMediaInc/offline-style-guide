@@ -37,7 +37,7 @@ export const componentRegistry: Record<string, ComponentMeta> = {
     imports: [
       "Sidebar", "SidebarContent", "SidebarGroup", "SidebarGroupLabel",
       "SidebarGroupContent", "SidebarMenu", "SidebarMenuItem", "SidebarMenuButton",
-      "SidebarHeader", "SidebarFooter", "SidebarTrigger", "SidebarProvider",
+      "SidebarMenuButtonLink", "SidebarHeader", "SidebarFooter", "SidebarTrigger", "SidebarProvider",
     ],
     composition: ["SidebarHeader", "SidebarContent", "SidebarGroup", "SidebarFooter"],
   },
@@ -225,6 +225,15 @@ export const componentRegistry: Record<string, ComponentMeta> = {
   },
 
   // Draft Components (not recommended for production)
+  Alert: {
+    name: "Alert",
+    status: "draft",
+    description: "Banner for inline messages - info, warning, error, success",
+    imports: ["Alert", "AlertTitle", "AlertDescription", "alertVariants"],
+    variants: { variant: ["default", "destructive", "warning", "success"] },
+    composition: ["AlertTitle", "AlertDescription"],
+  },
+
   Select: {
     name: "Select",
     status: "draft",

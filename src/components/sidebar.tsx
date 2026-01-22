@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
-import { PanelLeft } from "lucide-react"
+import { ExternalLink, PanelLeft } from "lucide-react"
 
 import { useIsMobile } from "../hooks/use-mobile"
 import { cn } from "../lib/utils"
@@ -602,6 +602,77 @@ const SidebarMenuButton = React.forwardRef<
 )
 SidebarMenuButton.displayName = "SidebarMenuButton"
 
+const SidebarMenuButtonLink = React.forwardRef<
+  HTMLAnchorElement,
+  React.ComponentProps<"a"> & {
+    isActive?: boolean
+    isExternal?: boolean
+    showExternalIcon?: boolean
+    tooltip?: string | React.ComponentProps<typeof TooltipContent>
+  } & VariantProps<typeof sidebarMenuButtonVariants>
+>(
+  (
+    {
+      isActive = false,
+      isExternal = false,
+      showExternalIcon = true,
+      variant = "default",
+      size = "default",
+      tooltip,
+      className,
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    const { isMobile, state } = useSidebar()
+
+    const externalProps = isExternal
+      ? { target: "_blank", rel: "noopener noreferrer" }
+      : {}
+
+    const link = (
+      <a
+        ref={ref}
+        data-sidebar="menu-button"
+        data-size={size}
+        data-active={isActive}
+        className={cn(sidebarMenuButtonVariants({ variant, size }), className)}
+        {...externalProps}
+        {...props}
+      >
+        {children}
+        {isExternal && showExternalIcon && (
+          <ExternalLink className="ml-auto h-3 w-3 opacity-60" aria-hidden="true" />
+        )}
+      </a>
+    )
+
+    if (!tooltip) {
+      return link
+    }
+
+    if (typeof tooltip === "string") {
+      tooltip = {
+        children: tooltip,
+      }
+    }
+
+    return (
+      <Tooltip>
+        <TooltipTrigger asChild>{link}</TooltipTrigger>
+        <TooltipContent
+          side="right"
+          align="center"
+          hidden={state !== "collapsed" || isMobile}
+          {...tooltip}
+        />
+      </Tooltip>
+    )
+  }
+)
+SidebarMenuButtonLink.displayName = "SidebarMenuButtonLink"
+
 const SidebarMenuAction = React.forwardRef<
   HTMLButtonElement,
   React.ComponentProps<"button"> & {
@@ -758,6 +829,7 @@ export {
   SidebarMenuAction,
   SidebarMenuBadge,
   SidebarMenuButton,
+  SidebarMenuButtonLink,
   SidebarMenuItem,
   SidebarMenuSkeleton,
   SidebarMenuSub,
