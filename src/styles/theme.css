@@ -206,6 +206,7 @@ body {
 /* ============================================
    Dialog Positioning Utilities (required for Dialog components)
    Tailwind v4 @source doesn't generate arbitrary value classes from compiled JS
+   Uses modern `translate` property to match Tailwind v4 output
    ============================================ */
 
 .left-\[50\%\] {
@@ -218,22 +219,22 @@ body {
 
 .-translate-x-1\/2 {
   --tw-translate-x: -50%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y));
+  translate: var(--tw-translate-x) var(--tw-translate-y);
 }
 
 .-translate-y-1\/2 {
   --tw-translate-y: -50%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y));
+  translate: var(--tw-translate-x) var(--tw-translate-y);
 }
 
 .translate-x-\[-50\%\] {
   --tw-translate-x: -50%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y));
+  translate: var(--tw-translate-x) var(--tw-translate-y);
 }
 
 .translate-y-\[-50\%\] {
   --tw-translate-y: -50%;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y));
+  translate: var(--tw-translate-x) var(--tw-translate-y);
 }
 
 /* ============================================
