@@ -44,7 +44,7 @@
     "**/*.css"
   ],
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3013",
     "build": "next build",
     "build:lib": "tsup && tsx scripts/build-design-system.ts && cp src/styles/theme.css dist/styles.css && cp src/USAGE.md dist/USAGE.md",
     "start": "next start",
