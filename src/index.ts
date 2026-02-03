@@ -31,8 +31,7 @@ export * from "./components/textarea"
 export * from "./components/breadcrumb"
 export * from "./components/chart"
 
-// DRAFT: Not yet published — pending design review (Issue #14)
-// export * from "./components/progress-stepper"
+export * from "./components/progress-stepper"
 
 // Next.js-specific components (requires next as peer dependency)
 export * from "./components/offline-sidebar"

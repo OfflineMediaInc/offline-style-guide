@@ -10,21 +10,15 @@ const meta: Meta<typeof ProgressStepper> = {
     docs: {
       description: {
         component: `
-## Progress Stepper (Draft)
+## Progress Stepper
 
 A horizontal progress stepper showing where a partner is in their journey.
-Each step shows a circle (completed ✓, current ●, or upcoming ○) connected by lines.
-
-### Status
-- **Draft** — Not yet published to \`@offlinemediainc/offline-ui\`
-- Extracted from the admin workflow stepper in the Partners App
-- Intended for re-use on the partner-facing dashboard (Issue #14)
+Each step shows a circle (completed, current, or upcoming) connected by lines.
 
 ### Visual States
-- **Completed**: Green circle with white checkmark, blue connecting line
-- **Current**: Blue-bordered circle (larger), blue label text
-- **Upcoming**: Gray-bordered circle, gray label text, gray connecting line
-- **All completed**: Green labels on all steps
+- **Completed**: Green circle with white checkmark + solid green connecting line
+- **Current**: Dark filled circle with white inner dot + dashed gray connecting line
+- **Upcoming**: Gray-bordered circle + dashed lighter gray connecting line
 
 ### Variants
 - **stepper** (default): Dots with connecting lines and labels below each dot
