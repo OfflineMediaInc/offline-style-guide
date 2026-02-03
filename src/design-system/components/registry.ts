@@ -225,6 +225,14 @@ export const componentRegistry: Record<string, ComponentMeta> = {
   },
 
   // Draft Components (not recommended for production)
+  ProgressStepper: {
+    name: "ProgressStepper",
+    status: "draft",
+    description: "Horizontal progress stepper with dot or compact bar variant",
+    imports: ["ProgressStepper"],
+    variants: { variant: ["stepper", "compact"] },
+  },
+
   Alert: {
     name: "Alert",
     status: "draft",

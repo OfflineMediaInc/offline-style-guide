@@ -11,6 +11,8 @@ export interface ProgressStepperStep {
 
 export interface ProgressStepperProps extends React.HTMLAttributes<HTMLDivElement> {
   steps: ProgressStepperStep[]
+  /** "stepper" shows dots + labels, "compact" shows a thin bar + current label */
+  variant?: "stepper" | "compact"
 }
 
 const circleVariants = cva(
@@ -55,9 +57,37 @@ const labelVariants = cva("text-xs font-medium mt-2 text-center whitespace-nowra
  * Steps use `flex justify-between` so circles and labels are naturally centered
  * without fighting for space with the line.
  */
-function ProgressStepper({ steps, className, ...props }: ProgressStepperProps) {
+function ProgressStepper({ steps, variant = "stepper", className, ...props }: ProgressStepperProps) {
   const allCompleted = steps.length > 0 && steps.every((s) => s.status === "completed")
+  const completedCount = steps.filter((s) => s.status === "completed").length
+  const totalSteps = steps.length
 
+  // Compact variant: thin bar + current stage label
+  if (variant === "compact") {
+    const currentStep = steps.find((s) => s.status === "current")
+    const pct = totalSteps > 0 ? Math.round((completedCount / totalSteps) * 100) : 0
+
+    return (
+      <div className={cn("w-full", className)} {...props}>
+        <div className="h-1 w-full rounded-full bg-[var(--colors-gray-100)]">
+          <div
+            className="h-1 rounded-full bg-[var(--semantic-success500)] transition-all"
+            style={{ width: `${pct}%` }}
+          />
+        </div>
+        <div className="mt-1 flex items-center justify-between">
+          <span className="text-xs font-semibold text-[var(--colors-gray-900)]">
+            {currentStep ? currentStep.label : "Complete"}
+          </span>
+          <span className="text-xs text-[var(--colors-gray-400)]">
+            {completedCount}/{totalSteps}
+          </span>
+        </div>
+      </div>
+    )
+  }
+
+  // Stepper variant: dots + connecting lines + labels
   // Find the index of the last completed step to size the progress line
   const lastCompletedIndex = (() => {
     let last = -1
@@ -71,8 +101,6 @@ function ProgressStepper({ steps, className, ...props }: ProgressStepperProps) {
     lastCompletedIndex >= 0 && steps.length > 1
       ? (lastCompletedIndex / (steps.length - 1)) * 100
       : 0
-
-  const totalSteps = steps.length
 
   return (
     <div className={cn("w-full", className)} {...props}>

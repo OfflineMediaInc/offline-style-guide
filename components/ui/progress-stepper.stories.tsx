@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
-import { ProgressStepper } from "./progress-stepper"
-import type { ProgressStepperStep } from "./progress-stepper"
+import { ProgressStepper } from "../../src/components/progress-stepper"
+import type { ProgressStepperStep } from "../../src/components/progress-stepper"
 
 const meta: Meta<typeof ProgressStepper> = {
   title: "Draft/ProgressStepper",
@@ -25,6 +25,10 @@ Each step shows a circle (completed ✓, current ●, or upcoming ○) connected
 - **Current**: Blue-bordered circle (larger), blue label text
 - **Upcoming**: Gray-bordered circle, gray label text, gray connecting line
 - **All completed**: Green labels on all steps
+
+### Variants
+- **stepper** (default): Dots with connecting lines and labels below each dot
+- **compact**: Thin progress bar with current stage label and step counter — designed for mobile
         `,
       },
     },
@@ -138,4 +142,36 @@ export const Playground: Story = {
   args: {
     steps: buildSteps(prelaunchLabels, 2),
   },
+}
+
+// ---------------------------------------------------------------------------
+// Compact variant stories
+// ---------------------------------------------------------------------------
+
+export const CompactNotStarted: Story = {
+  name: "Compact — Not Started",
+  render: () => (
+    <ProgressStepper variant="compact" steps={buildSteps(prelaunchLabels, 0)} />
+  ),
+}
+
+export const CompactMidway: Story = {
+  name: "Compact — Midway",
+  render: () => (
+    <ProgressStepper variant="compact" steps={buildSteps(prelaunchLabels, 2)} />
+  ),
+}
+
+export const CompactNearComplete: Story = {
+  name: "Compact — Near Complete",
+  render: () => (
+    <ProgressStepper variant="compact" steps={buildSteps(prelaunchLabels, 5)} />
+  ),
+}
+
+export const CompactAllDone: Story = {
+  name: "Compact — All Done",
+  render: () => (
+    <ProgressStepper variant="compact" steps={allCompletedSteps(prelaunchLabels)} />
+  ),
 }
