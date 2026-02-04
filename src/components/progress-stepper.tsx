@@ -79,7 +79,7 @@ function ProgressStepper({ steps, variant = "stepper", className, ...props }: Pr
   // Stepper variant: inline flexbox with per-segment connecting lines
   return (
     <div className={cn("w-full", className)} {...props}>
-      <div className="flex w-full items-start">
+      <div className="flex w-full items-start px-6">
         {steps.map((step, index) => {
           const isLast = index === steps.length - 1
           const isCompleted = step.status === "completed"
