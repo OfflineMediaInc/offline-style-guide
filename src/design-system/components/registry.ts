@@ -275,6 +275,13 @@ export const componentRegistry: Record<string, ComponentMeta> = {
     description: "Multi-line text input - under review",
     imports: ["Textarea"],
   },
+
+  MetricComparisonCard: {
+    name: "MetricComparisonCard",
+    status: "draft",
+    description: "Metric card with optional comparison text and highlighted state",
+    imports: ["MetricComparisonCard"],
+  },
 };
 
 // List of approved component names

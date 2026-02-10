@@ -20,6 +20,9 @@ import {
   BookOpen,
   Rocket,
   History,
+  ExternalLink,
+  ImageIcon,
+  PenLine,
 } from "lucide-react"
 import { OfflineSidebar, type NavGroup } from "./offline-sidebar"
 import {
@@ -492,6 +495,58 @@ export const MinimalNav: Story = {
   render: (args) => (
     <OfflineSidebar {...args} topbarContent={<TopbarBreadcrumb items={[{ label: "Dashboard" }]} />}>
       <SampleContent title="Dashboard" />
+    </OfflineSidebar>
+  ),
+}
+
+// ============================================================================
+// ACTION SUB-ITEMS EXAMPLE (Draft feature)
+// ============================================================================
+
+const actionSubItemsNavGroups: NavGroup[] = [
+  {
+    label: "Main",
+    items: [
+      { title: "Home", url: "/partner/dashboard", icon: LayoutDashboard },
+    ],
+  },
+  {
+    label: "Offers",
+    items: [
+      {
+        title: "Wye Hill Kitchen",
+        url: "/partner/offers/1",
+        icon: Tag,
+        isActive: true,
+        items: [
+          { title: "Preview", icon: ExternalLink, href: "https://example.com/preview" },
+          { title: "Media Assets", icon: ImageIcon, href: "https://example.com/media" },
+          { title: "Report Member", icon: Users, href: "https://example.com/vendor" },
+          { title: "POS Data", icon: CreditCard, href: "https://example.com/pos" },
+          { title: "Request Changes", icon: PenLine, onClick: () => console.log("Request changes clicked") },
+        ],
+      },
+      { title: "Glasshouse Kitchen", url: "/partner/offers/2", icon: Tag },
+    ],
+  },
+]
+
+export const WithActionSubItems: Story = {
+  name: "Action Sub-Items (Offer Context)",
+  args: {
+    workspace: {
+      name: "Partner App",
+      subtitle: "Offline",
+    },
+    user: {
+      name: "Chris Borreson",
+      email: "chris@example.com",
+    },
+    navGroups: actionSubItemsNavGroups,
+  },
+  render: (args) => (
+    <OfflineSidebar {...args} topbarContent={<TopbarBreadcrumb items={[{ label: "Offers" }, { label: "Wye Hill Kitchen" }]} />}>
+      <SampleContent title="Wye Hill Kitchen — Report" />
     </OfflineSidebar>
   ),
 }

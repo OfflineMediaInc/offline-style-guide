@@ -32,6 +32,7 @@ export * from "./components/breadcrumb"
 export * from "./components/chart"
 
 export * from "./components/progress-stepper"
+export * from "./components/metric-comparison-card"
 
 // Next.js-specific components (requires next as peer dependency)
 export * from "./components/offline-sidebar"

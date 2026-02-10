@@ -58,8 +58,14 @@ import {
 /** Sub-item for nested navigation */
 export interface NavSubItem {
   title: string
-  url: string
+  url?: string
   isActive?: boolean
+  /** Optional icon for the sub-item */
+  icon?: React.ElementType
+  /** Click handler (alternative to url) for action-style sub-items */
+  onClick?: () => void
+  /** External href — opens in new tab */
+  href?: string
 }
 
 /** Navigation item - can have sub-items for collapsible menus */
@@ -285,11 +291,29 @@ function CollapsibleNavItem({ item }: { item: NavItem }) {
         <CollapsibleContent>
           <SidebarMenuSub>
             {item.items?.map((subItem) => {
-              const subIsActive = subItem.isActive ?? pathname === subItem.url
+              const subIsActive = subItem.isActive ?? (subItem.url ? pathname === subItem.url : false)
+
+              // Action sub-item (onClick or external href, no internal route)
+              if (subItem.onClick || (subItem.href && !subItem.url)) {
+                return (
+                  <SidebarMenuSubItem key={subItem.title}>
+                    <SidebarMenuSubButton
+                      isActive={false}
+                      onClick={subItem.onClick || (() => subItem.href && window.open(subItem.href, "_blank"))}
+                    >
+                      {subItem.icon && <subItem.icon className="size-3.5" />}
+                      <span>{subItem.title}</span>
+                    </SidebarMenuSubButton>
+                  </SidebarMenuSubItem>
+                )
+              }
+
+              // Standard link sub-item
               return (
                 <SidebarMenuSubItem key={subItem.title}>
                   <SidebarMenuSubButton asChild isActive={subIsActive}>
-                    <Link href={subItem.url}>
+                    <Link href={subItem.url || "#"}>
+                      {subItem.icon && <subItem.icon className="size-3.5" />}
                       <span>{subItem.title}</span>
                     </Link>
                   </SidebarMenuSubButton>
