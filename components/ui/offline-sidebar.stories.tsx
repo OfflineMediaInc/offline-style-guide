@@ -551,6 +551,65 @@ export const WithActionSubItems: Story = {
   ),
 }
 
+// ============================================================================
+// LONG NAME TRUNCATION TEST
+// ============================================================================
+
+const longNameNavGroups: NavGroup[] = [
+  {
+    label: "Main",
+    items: [
+      { title: "Home", url: "/partner/dashboard", icon: LayoutDashboard },
+    ],
+  },
+  {
+    label: "Offers",
+    items: [
+      {
+        title: "Wye Hill Kitchen + Brewing",
+        url: "/partner/offers/1",
+        icon: Tag,
+        isActive: true,
+        items: [
+          { title: "Preview", icon: ExternalLink, href: "https://example.com/preview" },
+          { title: "Media Assets", icon: ImageIcon, href: "https://example.com/media" },
+          { title: "Report Member", icon: Users, href: "https://example.com/vendor" },
+        ],
+      },
+      {
+        title: "The Raleigh Beer Garden & Cocktail Lounge",
+        url: "/partner/offers/2",
+        icon: Tag,
+        items: [
+          { title: "Preview", icon: ExternalLink, href: "https://example.com/preview" },
+          { title: "Media Assets", icon: ImageIcon, href: "https://example.com/media" },
+        ],
+      },
+      { title: "Short Name", url: "/partner/offers/3", icon: Tag },
+    ],
+  },
+]
+
+export const LongNames: Story = {
+  name: "Long Names (Truncation)",
+  args: {
+    workspace: {
+      name: "Partner App",
+      subtitle: "Offline",
+    },
+    user: {
+      name: "Chris Borreson",
+      email: "chris@example.com",
+    },
+    navGroups: longNameNavGroups,
+  },
+  render: (args) => (
+    <OfflineSidebar {...args} topbarContent={<TopbarBreadcrumb items={[{ label: "Offers" }, { label: "Wye Hill Kitchen + Brewing" }]} />}>
+      <SampleContent title="Wye Hill Kitchen + Brewing" />
+    </OfflineSidebar>
+  ),
+}
+
 export const NoUser: Story = {
   name: "No User (Public)",
   args: {

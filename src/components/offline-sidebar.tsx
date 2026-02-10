@@ -284,7 +284,7 @@ function CollapsibleNavItem({ item }: { item: NavItem }) {
           {/* Only show parent as active if IT is active, not if a child is active */}
           <SidebarMenuButton tooltip={item.title} isActive={isActive && !hasActiveChild}>
             <item.icon className="size-4" />
-            <span className="truncate">{item.title}</span>
+            <span className="min-w-0 flex-1 truncate">{item.title}</span>
             <ChevronDown className="ml-auto size-4 shrink-0 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-180" />
           </SidebarMenuButton>
         </CollapsibleTrigger>
